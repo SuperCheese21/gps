@@ -53,17 +53,13 @@ export default class AccelerometerData extends React.Component {
 
     render() {
         const { gForce, low, high } = this.state;
-        if (!gForce) {
-            return null;
-        }
-
         return (
             <View style={styles.container}>
                 <Speedometer
-                    value={1 - 1 / (gForce + 1)}
+                    value={gForce ? 1 - 1 / (gForce + 1) : 0.5}
                     totalValue={1}
                 />
-                <Text style={{ fontSize: 30 }}>{gForce.toFixed(2)}</Text>
+                <Text style={{ fontSize: 30 }}>{gForce ? gForce.toFixed(2) : 'N/A'}</Text>
                 <Text>Low: {low.toFixed(2)}    High: {high.toFixed(2)}</Text>
                 <Button
                     onPress={() => this.setState({ low: 1, high: 1 })}
