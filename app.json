@@ -21,6 +21,7 @@
             "package": "com.stratospherelabs.gps"
         },
         "ios": {
+            "bundleIdentifier": "com.stratospherelabs.gps",
             "supportsTablet": true
         }
     }

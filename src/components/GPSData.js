@@ -1,6 +1,6 @@
 import React from 'react';
-import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
-import { Constants, Location, Permissions } from 'expo';
+import { Alert, Linking, StyleSheet, Text, View } from 'react-native';
+import { Location, Permissions } from 'expo';
 
 const M_TO_FT = 3.28084;
 const MS_TO_KTS = 1.94384;
@@ -12,17 +12,13 @@ export default class GPSData extends React.Component {
     }
 
     componentDidMount() {
-        if (Platform.OS !== 'android' || Constants.isDevice) {
-            this._getLocationAsync();
-        }
+        this._getLocationAsync();
     }
 
     _getLocationAsync = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
-            this.setState({
-                errorMessage: 'Permission to access location was denied',
-            });
+            Alert.alert('Error', 'Permission to access location was denied');
         }
         await Location.watchPositionAsync({
             enableHighAccuracy: true,
