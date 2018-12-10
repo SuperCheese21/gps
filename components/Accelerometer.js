@@ -11,8 +11,8 @@ export default class AccelerometerData extends React.Component {
     state = {
         gForceValues: [],
         gForce: null,
-        low: null,
-        high: null
+        low: 1,
+        high: 1
     };
 
     componentDidMount() {
@@ -64,12 +64,9 @@ export default class AccelerometerData extends React.Component {
                     totalValue={1}
                 />
                 <Text style={{ fontSize: 30 }}>{gForce.toFixed(2)}</Text>
-                <Text>Low: {low ? low.toFixed(2) : ''}    High: {high ? high.toFixed(2) : ''}</Text>
+                <Text>Low: {low.toFixed(2)}    High: {high.toFixed(2)}</Text>
                 <Button
-                    onPress={() => this.setState({
-                        low: null,
-                        high: null
-                    })}
+                    onPress={() => this.setState({ low: 1, high: 1 })}
                     title='Reset'
                 />
             </View>
